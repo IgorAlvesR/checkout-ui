@@ -1,6 +1,7 @@
 import validator from 'validator'
+import { formatCardNumberToApi } from './transform'
 
 export const validateCreditCardNumber = (cardNumber: string) => {
-  const cardNumberFormated = cardNumber.split(' ').join('').trim()
-  return validator.isCreditCard(cardNumberFormated)
+  const cardNumberFormatted = formatCardNumberToApi(cardNumber)
+  return validator.isCreditCard(cardNumberFormatted)
 }

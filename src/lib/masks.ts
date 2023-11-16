@@ -1,7 +1,8 @@
 import { mask, createDefaultMaskGenerator } from 'react-hook-mask'
+import { formatCardNumberToApi } from './transform'
 
 export const maskCreditCard = (value: string) => {
-  const cardNumberFormated = value.split(' ').join('').trim()
+  const cardNumberFormatted = formatCardNumberToApi(value)
   const maskFormat = '9999 9999 9999 9999'
-  return mask(cardNumberFormated, createDefaultMaskGenerator(maskFormat))
+  return mask(cardNumberFormatted, createDefaultMaskGenerator(maskFormat))
 }
