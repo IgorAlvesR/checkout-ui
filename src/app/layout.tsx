@@ -5,7 +5,7 @@ import './globals.css'
 const inter = dmSans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Afya',
+  title: 'Checkout',
   description: 'Método de pagamento',
 }
 
