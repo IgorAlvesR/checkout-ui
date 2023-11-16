@@ -8,7 +8,7 @@ export const useFormCheckout = () => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<TypeFormTestSchema>({
     mode: 'all',
     criteriaMode: 'all',
@@ -26,6 +26,7 @@ export const useFormCheckout = () => {
     handleFormSubmit,
     register,
     errors,
+    isValid,
     handleSubmit,
     setMaskCardNumber: (value: string) =>
       setValue('cardNumber', maskCreditCard(value)),

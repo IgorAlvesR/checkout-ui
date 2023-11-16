@@ -3,7 +3,7 @@
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
-import { useFormCheckout } from '@/hooks/useFormTest'
+import { useFormCheckout } from '@/hooks/useFormCheckout'
 
 const Error = ({ message }: { message: string }) => {
   return (
@@ -17,6 +17,7 @@ const FormTest = () => {
   const {
     handleFormSubmit,
     errors,
+    isValid,
     handleSubmit,
     register,
     setMaskCardNumber,
@@ -38,14 +39,17 @@ const FormTest = () => {
               setMaskCardNumber(target.value)
             },
           })}
-          maxLength={20}
         />
         {errors.cardNumber?.message && (
           <Error message={errors.cardNumber.message} />
         )}
       </Label>
 
-      <Button type="submit" className="font-bold rounded-full p-6">
+      <Button
+        disabled={!isValid}
+        type="submit"
+        className="font-bold rounded-full p-6"
+      >
         Finalizar pagamento
       </Button>
     </form>
