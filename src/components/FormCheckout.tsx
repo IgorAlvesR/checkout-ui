@@ -4,6 +4,7 @@ import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { useFormCheckout } from '@/hooks/useFormCheckout'
+import { IPayment } from '@/interfaces/IPayment'
 
 const Error = ({ message }: { message: string }) => {
   return (
@@ -16,7 +17,11 @@ const Error = ({ message }: { message: string }) => {
   )
 }
 
-const FormCheckout = () => {
+type FormCheckoutProps = {
+  payment: IPayment
+}
+
+const FormCheckout = ({ payment }: FormCheckoutProps) => {
   const {
     registerPayment,
     errors,
@@ -25,7 +30,7 @@ const FormCheckout = () => {
     registerField,
     setMaskCardNumber,
     setMaskCardExpiration,
-  } = useFormCheckout()
+  } = useFormCheckout(payment)
 
   return (
     <section className="px-8 py-6 w-full flex flex-col justify-between gap-6 sm:gap-8 sm:border sm:border-gray-100">

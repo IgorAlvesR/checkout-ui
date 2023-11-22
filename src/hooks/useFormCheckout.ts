@@ -2,11 +2,9 @@ import { TypeFormTestSchema, formTestSchema } from '@/schemas/formCheckout'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { maskCardExpiration, maskCreditCardNumber } from '@/lib/masks'
-import { PaymentContext } from '@/context/payment'
-import { useContext } from 'react'
+import { IPayment } from '@/interfaces/IPayment'
 
-export const useFormCheckout = () => {
-  const payment = useContext(PaymentContext)
+export const useFormCheckout = (payment: IPayment) => {
   const {
     register,
     handleSubmit,
@@ -28,7 +26,7 @@ export const useFormCheckout = () => {
 
   function registerPayment(data: TypeFormTestSchema) {
     resetFields()
-    payment?.register(data)
+    payment.register(data)
   }
 
   return {

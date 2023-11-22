@@ -2,7 +2,6 @@ import { expect, describe, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import FormCheckout from './FormCheckout'
 import userEvent from '@testing-library/user-event'
-import { PaymentContext } from '@/context/payment'
 import { RegisterPaymentMock } from '@/infra/RegisterPaymentMock'
 
 const sleep = (time: number) => {
@@ -15,11 +14,7 @@ const sleep = (time: number) => {
 
 describe('FormCheckout component', () => {
   const payment = new RegisterPaymentMock()
-  render(
-    <PaymentContext.Provider value={payment}>
-      <FormCheckout />
-    </PaymentContext.Provider>,
-  )
+  render(<FormCheckout payment={payment} />)
 
   it('deve renderizar o componente FormCheckout', () => {
     const formCheckout = screen.getByText('Número do cartão')
