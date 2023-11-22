@@ -1,8 +1,10 @@
 import { TypeFormTestSchema, formTestSchema } from '@/schemas/formCheckout'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { maskCardValidate, maskCreditCard } from '@/lib/masks'
-import { formatDate } from '@/lib/transform'
+import { maskCardExpiration, maskCreditCardNumber } from '@/lib/masks'
+import { RegisterPayment } from '@/infra/RegisterPayment'
+import { Payment } from '@/entities/Payment'
+import { isValid } from 'zod'
 
 export const useFormCheckout = () => {
   const {
@@ -19,23 +21,20 @@ export const useFormCheckout = () => {
     },
   })
 
-  function handleFormSubmit(data: TypeFormTestSchema) {
-    const cardValidate = formatDate(data.cardValidate)
-    console.log({
-      ...data,
-      cardValidate,
-    })
+  function registerPayment(data: TypeFormTestSchema) {
+    const payment = new RegisterPayment()
+    payment.register(new Payment(data.cardNumber, data.cardExpirationDate))
   }
 
   return {
-    handleFormSubmit,
-    register,
+    handleSubmit,
+    registerField: register,
+    registerPayment,
     errors,
     isValid,
-    handleSubmit,
     setMaskCardNumber: (value: string) =>
-      setValue('cardNumber', maskCreditCard(value)),
-    setMaskCardValidate: (value: string) =>
-      setValue('cardValidate', maskCardValidate(value)),
+      setValue('cardNumber', maskCreditCardNumber(value)),
+    setMaskCardExpiration: (value: string) =>
+      setValue('cardExpirationDate', maskCardExpiration(value)),
   }
 }

@@ -15,18 +15,18 @@ const Error = ({ message }: { message: string }) => {
 
 const FormTest = () => {
   const {
-    handleFormSubmit,
+    registerPayment,
     errors,
     isValid,
     handleSubmit,
-    register,
+    registerField,
     setMaskCardNumber,
-    setMaskCardValidate,
+    setMaskCardExpiration,
   } = useFormCheckout()
 
   return (
     <form
-      onSubmit={handleSubmit(handleFormSubmit)}
+      onSubmit={handleSubmit(registerPayment)}
       className="w-full flex flex-col justify-between gap-8"
     >
       <Label className="min-h-[6rem] flex flex-col gap-1 text-zinc-600 text-sm">
@@ -35,7 +35,7 @@ const FormTest = () => {
           type="text"
           className="border-x-0 border-t-0 focus-visible:ring-0 shadow-none rounded-none border-b-2 mx-0 p-0 text-lg text-zinc-500"
           placeholder="9999 9999 9999 9999"
-          {...register('cardNumber', {
+          {...registerField('cardNumber', {
             onChange: ({ target }) => {
               setMaskCardNumber(target.value)
             },
@@ -52,14 +52,14 @@ const FormTest = () => {
           type="text"
           className="border-x-0 border-t-0 focus-visible:ring-0 shadow-none rounded-none border-b-2 mx-0 p-0 text-lg text-zinc-500"
           placeholder="10/23"
-          {...register('cardValidate', {
+          {...registerField('cardExpirationDate', {
             onChange: ({ target }) => {
-              setMaskCardValidate(target.value)
+              setMaskCardExpiration(target.value)
             },
           })}
         />
-        {errors.cardValidate?.message && (
-          <Error message={errors.cardValidate.message} />
+        {errors.cardExpirationDate?.message && (
+          <Error message={errors.cardExpirationDate.message} />
         )}
       </Label>
 

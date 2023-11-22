@@ -1,14 +1,11 @@
 import validator from 'validator'
-import { formatCardNumberToApi } from './transform'
 
 export const validateCreditCardNumber = (cardNumber: string) => {
-  const cardNumberFormatted = formatCardNumberToApi(cardNumber)
-  return validator.isCreditCard(cardNumberFormatted)
+  return validator.isCreditCard(cardNumber)
 }
 
 export const validateCardExpiration = (value: string) => {
   const currentYear = String(new Date().getFullYear()).substring(2, 4)
-
   const validMonths = [
     '01',
     '02',
