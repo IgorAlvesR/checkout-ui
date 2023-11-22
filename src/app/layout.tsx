@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { DM_Sans as dmSans } from 'next/font/google'
 import './globals.css'
 
-const inter = dmSans({ subsets: ['latin'] })
+const dmSansFont = dmSans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Checkout',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>{children}</body>
+      <body className={`${dmSansFont.className}`}>{children}</body>
     </html>
   )
 }
