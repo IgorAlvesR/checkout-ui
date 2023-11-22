@@ -13,7 +13,7 @@ const Error = ({ message }: { message: string }) => {
   )
 }
 
-const FormTest = () => {
+const FormCheckout = () => {
   const {
     registerPayment,
     errors,
@@ -74,4 +74,4 @@ const FormTest = () => {
   )
 }
 
-export default FormTest
+export default FormCheckout

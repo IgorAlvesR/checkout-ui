@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { maskCardExpiration, maskCreditCardNumber } from '@/lib/masks'
 import { RegisterPayment } from '@/infra/RegisterPayment'
 import { Payment } from '@/entities/Payment'
-import { isValid } from 'zod'
 
 export const useFormCheckout = () => {
   const {
