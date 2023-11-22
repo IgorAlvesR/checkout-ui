@@ -20,9 +20,15 @@ export const useFormCheckout = () => {
     },
   })
 
+  function resetFields() {
+    setValue('cardNumber', '')
+    setValue('cardExpirationDate', '')
+  }
+
   function registerPayment(data: TypeFormTestSchema) {
     const payment = new RegisterPayment()
     payment.register(new Payment(data.cardNumber, data.cardExpirationDate))
+    resetFields()
   }
 
   return {
