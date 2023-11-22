@@ -6,6 +6,7 @@ export const validateCreditCardNumber = (cardNumber: string) => {
 
 export const validateCardExpiration = (value: string) => {
   const currentYear = String(new Date().getFullYear()).substring(2, 4)
+  const currentMonth = String(new Date().getMonth() + 1)
   const validMonths = [
     '01',
     '02',
@@ -25,7 +26,8 @@ export const validateCardExpiration = (value: string) => {
   const yearExpiration = value.split('/')[1]
 
   const isValidDateExpiration =
-    yearExpiration > currentYear && validMonths.includes(monthExpiration)
+    (monthExpiration >= currentMonth && yearExpiration >= currentYear) ||
+    (yearExpiration > currentYear && validMonths.includes(monthExpiration))
 
   return isValidDateExpiration
 }
