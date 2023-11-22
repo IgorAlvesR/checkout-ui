@@ -6,3 +6,8 @@ export const maskCreditCard = (value: string) => {
   const maskFormat = '9999 9999 9999 9999'
   return mask(cardNumberFormatted, createDefaultMaskGenerator(maskFormat))
 }
+
+export const maskCardValidate = (value: string) => {
+  const maskFormat = '99/99'
+  return mask(value, createDefaultMaskGenerator(maskFormat))
+}
